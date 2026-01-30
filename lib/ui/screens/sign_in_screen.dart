@@ -39,8 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {},
-                child: IconButton(onPressed: () {},
-                    icon: Icon(Icons.arrow_circle_right_outlined, color: Colors.white, size: 28)),
+                child: Icon(Icons.arrow_circle_right_outlined, color: Colors.white, size: 28),
               ),
               SizedBox(height: 48),
               Center(

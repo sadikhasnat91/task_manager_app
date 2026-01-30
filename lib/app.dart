@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/ui/screens/forget_password_verify_email_screen.dart';
 import 'package:task_manager_app/ui/screens/forget_password_verify_otp_screen.dart';
+import 'package:task_manager_app/ui/screens/main_bottom_nav_screen.dart';
+import 'package:task_manager_app/ui/screens/reset_password_screen.dart';
+import 'package:task_manager_app/ui/screens/sign_in_screen.dart';
+import 'package:task_manager_app/ui/screens/sign_up_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -38,7 +42,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: ForgetPasswordVerifyOtpScreen(),
+      home: MainBottomNavScreen(),
     );
   }
 }
