@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/ui/screens/new_task_list_screen.dart';
+import 'package:task_manager_app/ui/utils/assets_path.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
@@ -25,6 +26,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
       body: _screens[_selectedIndex],
       bottomNavigationBar: NavigationBar(
         selectedIndex: _selectedIndex,
+          indicatorColor: Colors.green,
           onDestinationSelected: (int index) {
               _selectedIndex = index;
               setState(() {});
