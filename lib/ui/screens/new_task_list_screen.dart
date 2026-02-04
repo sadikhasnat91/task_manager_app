@@ -20,31 +20,92 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
             children: [
-              _buildTasksSummaryByStatus()
+              _buildTasksSummaryByStatus(),
+              _buildTaskListView(),
             ],
           ),
-        )
+        ),
       ),
+    );
+  }
+
+  Widget _buildTaskListView() {
+    return ListView.builder(
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      shrinkWrap: true,
+      primary: false,
+      itemCount: 7,
+      itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            title: Text('Title', style: TextStyle(fontWeight: FontWeight.w600)),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Description', style: TextStyle(color: Colors.grey)),
+                Text(
+                  'Date: 01/01/2026',
+                  style: TextStyle(fontSize: 12, color: Colors.black54),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 4,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.blue,
+                      ),
+                      child: Text('New', style: TextStyle(color: Colors.white)),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.delete, color: Colors.red),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.edit, color: Colors.blueGrey),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
   Widget _buildTasksSummaryByStatus() {
     return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        child: SizedBox(
+          height: 100,
+          child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: SizedBox(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return TaskStatusSummaryCounterWidget(count: '11', title: 'Completed');
-                      },
-                ),
-              ),
-            ),
-          );
+            shrinkWrap: true,
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return TaskStatusSummaryCounterWidget(
+                count: '11',
+                title: 'Completed',
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
