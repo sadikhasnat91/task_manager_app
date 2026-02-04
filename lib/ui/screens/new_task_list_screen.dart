@@ -26,6 +26,10 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
     );
   }
 
@@ -37,6 +41,7 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
       itemCount: 7,
       itemBuilder: (context, index) {
         return Card(
+          elevation: 1.5,
           child: ListTile(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
@@ -45,7 +50,7 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Description', style: TextStyle(color: Colors.grey)),
+                Text('Description will be here', style: TextStyle(color: Colors.grey)),
                 Text(
                   'Date: 01/01/2026',
                   style: TextStyle(fontSize: 12, color: Colors.black54),
