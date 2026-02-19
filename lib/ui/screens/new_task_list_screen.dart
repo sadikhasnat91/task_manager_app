@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_app/ui/widgets/screen_background.dart';
+import 'package:task_manager_app/ui/widgets/task_item_widget.dart';
 import 'package:task_manager_app/ui/widgets/task_status_summary_counter_widget.dart';
 import 'package:task_manager_app/ui/widgets/tm_app_bar.dart';
 
@@ -40,53 +41,7 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
       primary: false,
       itemCount: 7,
       itemBuilder: (context, index) {
-        return Card(
-          elevation: 1.5,
-          child: ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            title: Text('Title', style: TextStyle(fontWeight: FontWeight.w600)),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Description will be here', style: TextStyle(color: Colors.grey)),
-                Text(
-                  'Date: 01/01/2026',
-                  style: TextStyle(fontSize: 12, color: Colors.black54),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.blue,
-                      ),
-                      child: Text('New', style: TextStyle(color: Colors.white)),
-                    ),
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.delete, color: Colors.red),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.edit, color: Colors.blueGrey),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
+        return TaskItemWidget();
       },
     );
   }
