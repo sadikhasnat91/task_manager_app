@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager_app/ui/controller/new_task_by_status_controller.dart';
 import 'package:task_manager_app/ui/widgets/screen_background.dart';
 import 'package:task_manager_app/ui/widgets/task_item_widget.dart';
 import 'package:task_manager_app/ui/widgets/task_status_summary_counter_widget.dart';
@@ -12,6 +13,14 @@ class NewTaskListScreen extends StatefulWidget {
 }
 
 class _NewTaskListScreenState extends State<NewTaskListScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    NewTaskByStatusController().getTaskCountByStatus();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

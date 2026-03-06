@@ -3,6 +3,7 @@ import 'package:task_manager_app/ui/screens/new_task_list_screen.dart';
 import 'package:task_manager_app/ui/utils/assets_path.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
+  static const routeName = '/main-bottom-nav-screen';
   const MainBottomNavScreen({super.key});
 
   @override

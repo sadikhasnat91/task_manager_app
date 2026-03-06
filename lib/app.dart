@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:task_manager_app/ui/screens/forget_password_verify_email_screen.dart';
 import 'package:task_manager_app/ui/screens/forget_password_verify_otp_screen.dart';
 import 'package:task_manager_app/ui/screens/main_bottom_nav_screen.dart';
 import 'package:task_manager_app/ui/screens/reset_password_screen.dart';
 import 'package:task_manager_app/ui/screens/sign_in_screen.dart';
 import 'package:task_manager_app/ui/screens/sign_up_screen.dart';
+import 'package:task_manager_app/ui/screens/splash_screen.dart';
+
+import 'controller_binder.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -42,6 +46,20 @@ class App extends StatelessWidget {
           ),
         ),
       ),
+
+      initialBinding: ControllerBinder(),
+      initialRoute: SplashScreen.routeName,
+      onGenerateRoute: (RouteSettings settings) {
+        late Widget widget;
+        if (settings.name == SplashScreen.routeName) {
+          widget = SplashScreen();
+        } else if (settings.name == SignInScreen.routeName) {
+          widget = SignInScreen();
+        } else if (settings.name == MainBottomNavScreen.routeName) {
+          widget = MainBottomNavScreen();
+        }
+        return MaterialPageRoute(builder: (context) => widget);
+      },
       home: MainBottomNavScreen(),
     );
   }
