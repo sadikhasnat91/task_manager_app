@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:task_manager_app/data/models/user_model.dart';
 import 'package:task_manager_app/data/services/network_caller.dart';
 import 'package:task_manager_app/data/utils/urls.dart';
+import 'package:task_manager_app/ui/controller/auth_controller.dart';
 
 class SignInController extends GetxController {
   bool _signInProgress = false;
@@ -27,6 +28,7 @@ class SignInController extends GetxController {
       String token = response.responseData!['token'];
       print(token);
       UserModel userModel = UserModel.fromJson(response.responseData!['data']);
+      await AuthController.saveUserData(token, userModel);
       print(userModel);
       isSuccess = true;
       _errorMessage = 'Sign In Successful';

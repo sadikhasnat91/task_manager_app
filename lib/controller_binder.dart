@@ -7,7 +7,7 @@ class ControllerBinder extends Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.put(SignInController()); // Binding (binds immediately before first screen load)
+    Get.lazyPut(()=> SignInController()); // Binding (binds immediately before first screen load)
     // Get.lazyPut(() => SignInController()); // Lazy binding (binds later after first screen load)
     Get.put(NewTaskByStatusController());
   }

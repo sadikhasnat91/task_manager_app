@@ -50,7 +50,7 @@ class App extends StatelessWidget {
       initialBinding: ControllerBinder(),
       initialRoute: SplashScreen.routeName,
       onGenerateRoute: (RouteSettings settings) {
-        late Widget widget;
+        Widget widget = SplashScreen();
         if (settings.name == SplashScreen.routeName) {
           widget = SplashScreen();
         } else if (settings.name == SignInScreen.routeName) {
@@ -60,7 +60,7 @@ class App extends StatelessWidget {
         }
         return MaterialPageRoute(builder: (context) => widget);
       },
-      home: MainBottomNavScreen(),
+      // home: MainBottomNavScreen(),
     );
   }
 }

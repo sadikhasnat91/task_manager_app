@@ -13,6 +13,7 @@ class NewTaskByStatusController extends GetxController{
   Future<bool> getTaskCountByStatus() async {
     bool isSuccess = false;
     _getTaskCountByStatusInProgress = true;
+    update();
 
     final NetworkResponse response = await NetworkCaller.getRequest(url: Urls.taskCountByStatusUrl);
     print(response);
@@ -22,6 +23,7 @@ class NewTaskByStatusController extends GetxController{
       isSuccess = true;
     }
     _getTaskCountByStatusInProgress = false;
+    update();
     return isSuccess;
   }
 }

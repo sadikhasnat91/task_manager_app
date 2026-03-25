@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager_app/data/models/task_count_model.dart';
 import 'package:task_manager_app/ui/controller/new_task_by_status_controller.dart';
 import 'package:task_manager_app/ui/widgets/screen_background.dart';
 import 'package:task_manager_app/ui/widgets/task_item_widget.dart';
@@ -13,12 +15,17 @@ class NewTaskListScreen extends StatefulWidget {
 }
 
 class _NewTaskListScreenState extends State<NewTaskListScreen> {
+  final NewTaskByStatusController _newTaskByStatusController = Get.find<NewTaskByStatusController>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    NewTaskByStatusController().getTaskCountByStatus();
+    _getTaskCountByStatus();
+  }
+
+  Future<void> _getTaskCountByStatus() async {
+    final bool isSuccess = await _newTaskByStatusController.getTaskCountByStatus();
   }
 
   @override
@@ -58,22 +65,27 @@ class _NewTaskListScreenState extends State<NewTaskListScreen> {
   Widget _buildTasksSummaryByStatus() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-        child: SizedBox(
-          height: 100,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            itemCount: 4,
-            itemBuilder: (context, index) {
-              return TaskStatusSummaryCounterWidget(
-                count: '11',
-                title: 'Completed',
-              );
-            },
-          ),
-        ),
+      child: GetBuilder<NewTaskByStatusController>(
+        builder: (controller){
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+            child: SizedBox(
+              height: 128,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: controller.taskCountByStatusModel.taskByStatusList?.length ?? 0,
+                itemBuilder: (context, index) {
+                  final TaskCountModel taskCountModel = controller.taskCountByStatusModel.taskByStatusList?[index] ?? TaskCountModel();
+                  return TaskStatusSummaryCounterWidget(
+                    count: taskCountModel.sum.toString(),
+                    title: taskCountModel.id ?? '',
+                  );
+                },
+              ),
+            ),
+          );
+        }
       ),
     );
   }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:task_manager_app/ui/screens/sign_in_screen.dart';
 import 'package:task_manager_app/ui/utils/assets_path.dart';
+
+import '../controller/auth_controller.dart';
 
 class TmAppBar extends StatefulWidget implements PreferredSizeWidget{
   const TmAppBar({super.key});
@@ -34,8 +38,10 @@ class _TmAppBarState extends State<TmAppBar> {
               ],
             ),
           ),
-          IconButton(onPressed: () {
-
+          IconButton(
+              onPressed: () async{
+            await AuthController.clearUserData();
+            Get.offAllNamed(SignInScreen.routeName);
           },
               icon: Icon(Icons.logout))
         ],
